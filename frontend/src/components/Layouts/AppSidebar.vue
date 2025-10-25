@@ -29,7 +29,7 @@
           </template>
         </SidebarLink>
       </div>
-      <div v-for="view in allViews" :key="view.label">
+      <!-- <div v-for="view in allViews" :key="view.label">
         <div
           v-if="!view.hideLabel && isSidebarCollapsed && view.views?.length"
           class="mx-2 my-2 h-1 border-b"
@@ -69,7 +69,7 @@
             />
           </nav>
         </Section>
-      </div>
+      </div> -->
     </div>
     <div class="m-2 flex flex-col gap-1">
       <div class="flex flex-col gap-2 mb-1">
