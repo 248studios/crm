@@ -176,7 +176,7 @@ const tabs = computed(() => {
       condition: () => isManager(),
     },
     {
-      label: __('Integrations', null, 'FCRM'),
+      label: __('Integrations', null, 'AOSCRM'),
       items: [
         {
           label: __('Telephony'),

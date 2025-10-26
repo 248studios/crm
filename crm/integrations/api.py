@@ -52,16 +52,16 @@ def add_note_to_call_log(call_sid, note):
 	if not note.get("name"):
 		_note = frappe.get_doc(
 			{
-				"doctype": "FCRM Note",
+				"doctype": "AOSCRM Note",
 				"title": note.get("title", "Call Note"),
 				"content": note.get("content"),
 			}
 		).insert(ignore_permissions=True)
 	else:
-		_note = frappe.set_value("FCRM Note", note.get("name"), "content", note.get("content"))
+		_note = frappe.set_value("AOSCRM Note", note.get("name"), "content", note.get("content"))
 
 	call_log = frappe.get_cached_doc("CRM Call Log", call_sid)
-	call_log.link_with_reference_doc("FCRM Note", _note.name)
+	call_log.link_with_reference_doc("AOSCRM Note", _note.name)
 	call_log.save(ignore_permissions=True)
 
 	return _note

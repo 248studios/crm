@@ -386,7 +386,7 @@ const tabs = computed(() => {
 const { tabIndex } = useActiveTabManager(tabs, 'lastLeadTab')
 
 const sections = createResource({
-  url: 'crm.fcrm.doctype.crm_fields_layout.crm_fields_layout.get_sidepanel_sections',
+  url: 'crm.aoscrm.doctype.crm_fields_layout.crm_fields_layout.get_sidepanel_sections',
   cache: ['sidePanelSections', 'CRM Lead'],
   params: { doctype: 'CRM Lead' },
   auto: true,
@@ -446,7 +446,7 @@ async function convertToDeal() {
     existingOrganization.value = ''
   }
 
-  let deal = await call('crm.fcrm.doctype.crm_lead.crm_lead.convert_to_deal', {
+  let deal = await call('crm.aoscrm.doctype.crm_lead.crm_lead.convert_to_deal', {
     lead: props.leadId,
     deal: {},
     existing_contact: existingContact.value,

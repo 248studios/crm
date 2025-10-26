@@ -105,7 +105,7 @@ const dialogOptions = computed(() => {
 })
 
 const tabs = createResource({
-  url: 'crm.fcrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
+  url: 'crm.aoscrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
   cache: ['QuickEntry', 'Address'],
   params: { doctype: 'Address', type: 'Quick Entry' },
   auto: true,

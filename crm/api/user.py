@@ -38,7 +38,7 @@ def update_user_role(user, new_role):
 	if new_role == "Sales User":
 		user_doc.append_roles("Sales User")
 		user_doc.remove_roles("Sales Manager", "System Manager")
-		update_module_in_user(user_doc, "FCRM")
+		update_module_in_user(user_doc, "AOSCRM")
 
 	user_doc.save(ignore_permissions=True)
 

@@ -4,21 +4,21 @@ from frappe.model.rename_doc import rename_doc
 
 def execute():
 
-	if not frappe.db.exists("DocType", "FCRM Note"):
+	if not frappe.db.exists("DocType", "AOSCRM Note"):
 		frappe.flags.ignore_route_conflict_validation = True
-		rename_doc("DocType", "CRM Note", "FCRM Note")
+		rename_doc("DocType", "CRM Note", "AOSCRM Note")
 		frappe.flags.ignore_route_conflict_validation = False
 
-		frappe.reload_doctype("FCRM Note", force=True)
+		frappe.reload_doctype("AOSCRM Note", force=True)
 
-	if frappe.db.exists("DocType", "FCRM Note") and frappe.db.count("FCRM Note") > 0:
+	if frappe.db.exists("DocType", "AOSCRM Note") and frappe.db.count("AOSCRM Note") > 0:
 		return
 
 	notes = frappe.db.sql("SELECT * FROM `tabCRM Note`", as_dict=True)
 	if notes:
 		for note in notes:
 			doc = frappe.get_doc({
-				"doctype": "FCRM Note",
+				"doctype": "AOSCRM Note",
 				"creation": note.get("creation"),
 				"modified": note.get("modified"),
 				"modified_by": note.get("modified_by"),

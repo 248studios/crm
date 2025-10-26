@@ -4,8 +4,8 @@ import click
 import frappe
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
-from crm.fcrm.doctype.crm_dashboard.crm_dashboard import create_default_manager_dashboard
-from crm.fcrm.doctype.crm_products.crm_products import create_product_details_script
+from crm.aoscrm.doctype.crm_dashboard.crm_dashboard import create_default_manager_dashboard
+from crm.aoscrm.doctype.crm_products.crm_products import create_product_details_script
 
 
 def before_install():
@@ -403,7 +403,7 @@ def add_default_lost_reasons():
 
 
 def add_standard_dropdown_items():
-	crm_settings = frappe.get_single("FCRM Settings")
+	crm_settings = frappe.get_single("AOSCRM Settings")
 
 	# don't add dropdown items if they're already present
 	if crm_settings.dropdown_items:
@@ -418,7 +418,7 @@ def add_standard_dropdown_items():
 
 
 def add_default_scripts():
-	from crm.fcrm.doctype.fcrm_settings.fcrm_settings import create_forecasting_script
+	from crm.aoscrm.doctype.aoscrm_settings.aoscrm_settings import create_forecasting_script
 
 	for doctype in ["CRM Lead", "CRM Deal"]:
 		create_product_details_script(doctype)

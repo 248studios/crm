@@ -127,7 +127,7 @@ watch(
 )
 
 const tabs = createResource({
-  url: 'crm.fcrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
+  url: 'crm.aoscrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
   cache: ['QuickEntry', 'CRM Deal'],
   params: { doctype: 'CRM Deal', type: 'Quick Entry' },
   auto: true,
@@ -188,7 +188,7 @@ async function createDeal() {
   await triggerOnBeforeCreate?.()
 
   createResource({
-    url: 'crm.fcrm.doctype.crm_deal.crm_deal.create_deal',
+    url: 'crm.aoscrm.doctype.crm_deal.crm_deal.create_deal',
     params: { args: deal.doc },
     auto: true,
     validate() {

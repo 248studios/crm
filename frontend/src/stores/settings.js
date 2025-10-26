@@ -5,8 +5,8 @@ const settings = ref({})
 const brand = reactive({})
 
 const _settings = createDocumentResource({
-  doctype: 'FCRM Settings',
-  name: 'FCRM Settings',
+  doctype: 'AOSCRM Settings',
+  name: 'AOSCRM Settings',
   onSuccess: (data) => {
     settings.value = data
     getSettings().setupBrand()

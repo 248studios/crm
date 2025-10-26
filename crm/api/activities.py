@@ -6,7 +6,7 @@ from frappe import _
 from frappe.desk.form.load import get_docinfo
 from frappe.query_builder import JoinType
 
-from crm.fcrm.doctype.crm_call_log.crm_call_log import parse_call_log
+from crm.aoscrm.doctype.crm_call_log.crm_call_log import parse_call_log
 
 
 @frappe.whitelist()
@@ -411,18 +411,18 @@ def get_linked_calls(name):
 		_calls = query.run(as_dict=True)
 
 		for call in _calls:
-			if call.get("link_doctype") == "FCRM Note":
+			if call.get("link_doctype") == "AOSCRM Note":
 				notes.append(call.link_name)
 			elif call.get("link_doctype") == "CRM Task":
 				tasks.append(call.link_name)
 
-		_calls = [call for call in _calls if call.get("link_doctype") not in ["FCRM Note", "CRM Task"]]
+		_calls = [call for call in _calls if call.get("link_doctype") not in ["AOSCRM Note", "CRM Task"]]
 		if _calls:
 			calls = calls + _calls
 
 	if notes:
 		notes = frappe.db.get_all(
-			"FCRM Note",
+			"AOSCRM Note",
 			filters={"name": ("in", notes)},
 			fields=["name", "title", "content", "owner", "modified"],
 		)
@@ -450,7 +450,7 @@ def get_linked_calls(name):
 
 def get_linked_notes(name):
 	notes = frappe.db.get_all(
-		"FCRM Note",
+		"AOSCRM Note",
 		filters={"reference_docname": name},
 		fields=["name", "title", "content", "owner", "modified"],
 	)

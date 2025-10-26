@@ -59,7 +59,7 @@ const show = defineModel()
 const showGridRowFieldsModal = defineModel('showGridRowFieldsModal')
 
 const tabs = createResource({
-  url: 'crm.fcrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
+  url: 'crm.aoscrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
   cache: ['Grid Row', props.doctype, props.parentDoctype],
   params: {
     doctype: props.doctype,

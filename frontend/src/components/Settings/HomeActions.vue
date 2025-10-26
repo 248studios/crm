@@ -26,7 +26,7 @@
       <Grid
         v-model="document.doc.dropdown_items"
         doctype="CRM Dropdown Item"
-        parentDoctype="FCRM Settings"
+        parentDoctype="AOSCRM Settings"
         parentFieldname="dropdown_items"
       />
     </div>
@@ -43,8 +43,8 @@ import { useDocument } from '@/data/document'
 import { ref, provide } from 'vue'
 
 const { document, triggerOnChange } = useDocument(
-  'FCRM Settings',
-  'FCRM Settings',
+  'AOSCRM Settings',
+  'AOSCRM Settings',
 )
 
 provide('triggerOnChange', triggerOnChange)

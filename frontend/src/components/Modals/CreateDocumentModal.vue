@@ -81,8 +81,8 @@ const { document: _data, triggerOnBeforeCreate } = useDocument(props.doctype)
 const dialogOptions = computed(() => {
   let doctype = props.doctype
 
-  if (doctype.startsWith('CRM ') || doctype.startsWith('FCRM ')) {
-    doctype = doctype.replace(/^(CRM |FCRM )/, '')
+  if (doctype.startsWith('CRM ') || doctype.startsWith('AOSCRM ')) {
+    doctype = doctype.replace(/^(CRM |AOSCRM )/, '')
   }
 
   let title = __('New {0}', [doctype])
@@ -99,7 +99,7 @@ const dialogOptions = computed(() => {
 })
 
 const tabs = createResource({
-  url: 'crm.fcrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
+  url: 'crm.aoscrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
   cache: ['QuickEntry', props.doctype],
   params: { doctype: props.doctype, type: 'Quick Entry' },
   auto: true,

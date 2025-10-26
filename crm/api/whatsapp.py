@@ -4,7 +4,7 @@ import frappe
 from frappe import _
 
 from crm.api.doc import get_assigned_users
-from crm.fcrm.doctype.crm_notification.crm_notification import notify_user
+from crm.aoscrm.doctype.crm_notification.crm_notification import notify_user
 
 
 def validate(doc, method):

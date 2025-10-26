@@ -130,7 +130,7 @@ const viewLinkedDoc = (doc) => {
       id = doc.reference_docname
       openDesk = true
       break
-    case 'FCRM Note':
+    case 'AOSCRM Note':
       page = 'notes'
       id = `view?open=${doc.reference_docname}`
       break
@@ -145,6 +145,6 @@ const viewLinkedDoc = (doc) => {
 }
 
 const getDoctypeName = (doctype) => {
-  return doctype.replace(/^(CRM|FCRM)\s*/, '')
+  return doctype.replace(/^(CRM|AOSCRM)\s*/, '')
 }
 </script>

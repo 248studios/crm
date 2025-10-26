@@ -123,7 +123,7 @@ const props = defineProps({
 })
 
 const callLog = createResource({
-  url: 'crm.fcrm.doctype.crm_call_log.crm_call_log.get_call_log',
+  url: 'crm.aoscrm.doctype.crm_call_log.crm_call_log.get_call_log',
   params: { name: props.activity.name },
   cache: ['call_log', props.activity.name],
   auto: true,

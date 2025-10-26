@@ -10,7 +10,7 @@ from frappe.utils import make_filter_tuple
 from pypika import Criterion
 
 from crm.api.views import get_views
-from crm.fcrm.doctype.crm_form_script.crm_form_script import get_form_script
+from crm.aoscrm.doctype.crm_form_script.crm_form_script import get_form_script
 from crm.utils import get_dynamic_linked_docs, get_linked_docs
 
 
@@ -743,7 +743,7 @@ def getCounts(d, doctype):
 		"CRM Task", filters={"reference_doctype": doctype, "reference_docname": d.get("name")}
 	)
 	d["_note_count"] = frappe.db.count(
-		"FCRM Note", filters={"reference_doctype": doctype, "reference_docname": d.get("name")}
+		"AOSCRM Note", filters={"reference_doctype": doctype, "reference_docname": d.get("name")}
 	)
 	return d
 

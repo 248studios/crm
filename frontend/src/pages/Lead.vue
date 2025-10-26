@@ -431,7 +431,7 @@ const tabs = computed(() => {
 const { tabIndex, changeTabTo } = useActiveTabManager(tabs, 'lastLeadTab')
 
 const sections = createResource({
-  url: 'crm.fcrm.doctype.crm_fields_layout.crm_fields_layout.get_sidepanel_sections',
+  url: 'crm.aoscrm.doctype.crm_fields_layout.crm_fields_layout.get_sidepanel_sections',
   cache: ['sidePanelSections', 'CRM Lead'],
   params: { doctype: 'CRM Lead' },
   auto: true,

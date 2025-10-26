@@ -1,11 +1,11 @@
-app_name = "crm"
-app_title = "Frappe CRM"
-app_publisher = "Frappe Technologies Pvt. Ltd."
-app_description = "Kick-ass Open Source CRM"
-app_email = "shariq@frappe.io"
+app_name = "aoscrm"
+app_title = "AcademyOS CRM"
+app_publisher = "248 Studios GmbH"
+app_description = "Official CRM-Module of AcademyOS"
+app_email = "marius@248studios.com"
 app_license = "AGPLv3"
 app_icon_url = "/assets/crm/images/logo.svg"
-app_icon_title = "CRM"
+app_icon_title = "AOSCRM"
 app_icon_route = "/crm"
 
 # Apps
@@ -14,9 +14,9 @@ app_icon_route = "/crm"
 # required_apps = []
 add_to_apps_screen = [
 	{
-		"name": "crm",
+		"name": "aoscrm",
 		"logo": "/assets/crm/images/logo.svg",
-		"title": "CRM",
+		"title": "AOSCRM",
 		"route": "/crm",
 		"has_permission": "crm.api.check_app_permission",
 	}
@@ -155,7 +155,7 @@ doc_events = {
 	},
 	"CRM Deal": {
 		"on_update": [
-			"crm.fcrm.doctype.erpnext_crm_settings.erpnext_crm_settings.create_customer_in_erpnext"
+			"crm.aoscrm.doctype.erpnext_crm_settings.erpnext_crm_settings.create_customer_in_erpnext"
 		],
 	},
 	"User": {
@@ -254,7 +254,7 @@ doc_events = {
 # "crm.auth.validate"
 # ]
 
-after_migrate = ["crm.fcrm.doctype.fcrm_settings.fcrm_settings.after_migrate"]
+after_migrate = ["crm.aoscrm.doctype.aoscrm_settings.aoscrm_settings.after_migrate"]
 
 standard_dropdown_items = [
 	{

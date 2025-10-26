@@ -3,7 +3,7 @@ import json
 import frappe
 from frappe import _
 
-from crm.fcrm.doctype.crm_dashboard.crm_dashboard import create_default_manager_dashboard
+from crm.aoscrm.doctype.crm_dashboard.crm_dashboard import create_default_manager_dashboard
 from crm.utils import sales_user_only
 
 
@@ -1097,7 +1097,7 @@ def get_base_currency_symbol():
 	"""
 	Get the base currency symbol from the system settings.
 	"""
-	base_currency = frappe.db.get_single_value("FCRM Settings", "currency") or "USD"
+	base_currency = frappe.db.get_single_value("AOSCRM Settings", "currency") or "USD"
 	return frappe.db.get_value("Currency", base_currency, "symbol") or ""
 
 
