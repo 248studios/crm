@@ -26,29 +26,6 @@
           </div>
         </div>
         <div>
-          <div
-            v-if="hasOrganizationSections || hasContactSections"
-            class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-3"
-          >
-            <div
-              v-if="hasOrganizationSections"
-              class="flex items-center gap-3 text-sm text-ink-gray-5"
-            >
-              <div>{{ __('Choose Existing Organization') }}</div>
-              <Switch v-model="chooseExistingOrganization" />
-            </div>
-            <div
-              v-if="hasContactSections"
-              class="flex items-center gap-3 text-sm text-ink-gray-5"
-            >
-              <div>{{ __('Choose Existing Contact') }}</div>
-              <Switch v-model="chooseExistingContact" />
-            </div>
-          </div>
-          <div
-            v-if="hasOrganizationSections || hasContactSections"
-            class="h-px w-full border-t my-5"
-          />
           <FieldLayout
             ref="fieldLayoutRef"
             v-if="tabs.data?.length"
@@ -82,8 +59,8 @@ import { isMobileView } from '@/composables/settings'
 import { showQuickEntryModal, quickEntryProps } from '@/composables/modals'
 import { useDocument } from '@/data/document'
 import { capture } from '@/telemetry'
-import { Switch, createResource } from 'frappe-ui'
-import { computed, ref, onMounted, nextTick, watch } from 'vue'
+import { createResource } from 'frappe-ui'
+import { computed, ref, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
@@ -99,32 +76,8 @@ const error = ref(null)
 
 const { document: deal, triggerOnBeforeCreate } = useDocument('CRM Deal')
 
-const hasOrganizationSections = ref(true)
-const hasContactSections = ref(true)
-
 const isDealCreating = ref(false)
-const chooseExistingContact = ref(false)
-const chooseExistingOrganization = ref(false)
 const fieldLayoutRef = ref(null)
-
-watch(
-  [chooseExistingOrganization, chooseExistingContact],
-  ([organization, contact]) => {
-    tabs.data.forEach((tab) => {
-      tab.sections.forEach((section) => {
-        if (section.name === 'organization_section') {
-          section.hidden = !organization
-        } else if (section.name === 'organization_details_section') {
-          section.hidden = organization
-        } else if (section.name === 'contact_section') {
-          section.hidden = !contact
-        } else if (section.name === 'contact_details_section') {
-          section.hidden = contact
-        }
-      })
-    })
-  },
-)
 
 const tabs = createResource({
   url: 'crm.aoscrm.doctype.crm_fields_layout.crm_fields_layout.get_fields_layout',
@@ -132,23 +85,20 @@ const tabs = createResource({
   params: { doctype: 'CRM Deal', type: 'Quick Entry' },
   auto: true,
   transform: (_tabs) => {
-    hasOrganizationSections.value = false
-    return _tabs.forEach((tab) => {
+    _tabs.forEach((tab) => {
       tab.sections.forEach((section) => {
+        // Sichtbarkeit hart setzen:
+        if (section.name === 'organization_section') {
+          section.hidden = false // bestehende Orga auswählen -> anzeigen
+        } else if (section.name === 'organization_details_section') {
+          section.hidden = true // neue Orga Felder -> ausblenden
+        } else if (section.name === 'contact_section') {
+          section.hidden = false // bestehenden Kontakt auswählen
+        } else if (section.name === 'contact_details_section') {
+          section.hidden = true // neuen Kontakt anlegen
+        }
+
         section.columns.forEach((column) => {
-          if (
-            ['organization_section', 'organization_details_section'].includes(
-              section.name,
-            )
-          ) {
-            hasOrganizationSections.value = true
-          } else if (
-            ['contact_section', 'contact_details_section'].includes(
-              section.name,
-            )
-          ) {
-            hasContactSections.value = true
-          }
           column.fields.forEach((field) => {
             if (field.fieldname == 'status') {
               field.fieldtype = 'Select'
@@ -163,8 +113,11 @@ const tabs = createResource({
         })
       })
     })
+
+    return _tabs
   },
 })
+
 
 const dealStatuses = computed(() => {
   let statuses = statusOptions('deal')
@@ -178,12 +131,11 @@ async function createDeal() {
   if (deal.doc.website && !deal.doc.website.startsWith('http')) {
     deal.doc.website = 'https://' + deal.doc.website
   }
-  if (chooseExistingContact.value) {
-    deal.doc['first_name'] = null
-    deal.doc['last_name'] = null
-    deal.doc['email'] = null
-    deal.doc['mobile_no'] = null
-  } else deal.doc['contact'] = null
+  
+  deal.doc['first_name'] = null
+  deal.doc['last_name'] = null
+  deal.doc['email'] = null
+  deal.doc['mobile_no'] = null
 
   await triggerOnBeforeCreate?.()
 
