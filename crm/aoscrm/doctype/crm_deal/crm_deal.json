@@ -103,11 +103,6 @@
             "label": "Website"
         },
         {
-            "fieldname": "next_step",
-            "fieldtype": "Data",
-            "label": "Next Step"
-        },
-        {
             "fieldname": "lead",
             "fieldtype": "Link",
             "label": "Lead",

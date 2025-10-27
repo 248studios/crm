@@ -77,20 +77,20 @@
                   </div>
                   <ErrorMessage :message="__(error)" />
                 </div>
-              </div>
-              <div class="flex gap-1.5">
-                <Button
-                  :label="__('Delete')"
-                  theme="red"
-                  size="sm"
-                  iconLeft="trash-2"
-                  @click="deleteOrganization()"
-                />
-                <Button
-                  :tooltip="__('Open website')"
-                  icon="link"
-                  @click="openWebsite"
-                />
+                <div class="flex gap-1.5">
+                  <Button
+                    :label="__('Delete')"
+                    theme="red"
+                    size="sm"
+                    iconLeft="trash-2"
+                    @click="deleteOrganization()"
+                  />
+                  <Button
+                    :tooltip="__('Open website')"
+                    icon="link"
+                    @click="openWebsite"
+                  />
+                </div>
               </div>
             </div>
           </template>

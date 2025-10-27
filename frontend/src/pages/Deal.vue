@@ -63,7 +63,7 @@
       <div class="flex items-center justify-start gap-5 border-b p-5">
         <div class="flex flex-col gap-2.5 truncate text-ink-gray-9">
           <div class="truncate text-2xl font-medium">
-            {{ title }} {{ doc.title }}
+            {{ doc.title }}
           </div>
           <div class="flex gap-1.5">
             <Button
@@ -484,9 +484,10 @@ const breadcrumbs = computed(() => {
   }
 
   items.push({
-    label: title.value,
+    label: doc.title, // AOSCHANGE from title.value to doc.title
     route: { name: 'Deal', params: { dealId: props.dealId } },
   })
+
   return items
 })
 
@@ -504,7 +505,7 @@ const statuses = computed(() => {
 
 usePageMeta(() => {
   return {
-    title: title.value,
+    title: doc.title, // AOSCHANGE from title.value to doc.title
     icon: brand.favicon,
   }
 })
