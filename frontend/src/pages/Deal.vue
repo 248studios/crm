@@ -52,29 +52,19 @@
       </template>
     </Tabs>
     <Resizer side="right" class="flex flex-col justify-between border-l">
-      <div
+      <!-- <div
         class="flex h-10.5 cursor-copy items-center border-b px-5 py-2.5 text-lg font-medium text-ink-gray-9"
         @click="copyToClipboard(dealId)"
       >
         {{ __(dealId) }}
       </div>
+      # AOSCHANGE: Den Titel hier oben in der Seitenleiste kann man sich mMn sparen
+      -->
       <div class="flex items-center justify-start gap-5 border-b p-5">
-        <Tooltip :text="__('Organization logo')">
-          <div class="group relative size-12">
-            <Avatar
-              size="3xl"
-              class="size-12"
-              :label="title"
-              :image="organization?.organization_logo"
-            />
-          </div>
-        </Tooltip>
         <div class="flex flex-col gap-2.5 truncate text-ink-gray-9">
-          <Tooltip :text="organization?.name || __('Set an organization')">
-            <div class="truncate text-2xl font-medium">
-              {{ title }}
-            </div>
-          </Tooltip>
+          <div class="truncate text-2xl font-medium">
+            {{ title }} {{ doc.title }}
+          </div>
           <div class="flex gap-1.5">
             <Button
               v-if="callEnabled"
